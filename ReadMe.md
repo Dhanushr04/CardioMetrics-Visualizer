@@ -1,114 +1,71 @@
+# HeartWise: Heart Disease Risk Predictor
 
-# ❤️ HeartWise
+A simple, responsive machine learning web app built with Flask that predicts the risk of heart disease using patient data. It’s powered by logistic regression and a clean Bootstrap-based UI.
 
-**HeartWise** is a vibrant, full-stack web application designed to predict heart disease risk and guide users toward better cardiovascular health. It features a user-friendly interface, interactive visualizations, and machine learning integration — all built using Flask (or Django), SQLite/MySQL, HTML, CSS, and JavaScript.
+## 🎯 Project Goals
+- Predict if a person is at risk of heart disease using health attributes.
+- Offer a user-friendly, mobile-responsive interface.
+- Visualize prediction results clearly using charts.
+- Easily train the model with your own CSV dataset (`heart.csv`).
 
----
+## 🧰 Tech Stack
 
-## 🚀 Features
-
-- 🔐 **User Authentication** (Login/Signup)
-- 🧠 **Heart Disease Prediction** using Machine Learning
-- 📊 **Health Analytics Dashboard** with interactive graphs
-- 🩺 **Vital Parameter Input** (age, cholesterol, blood pressure, etc.)
-- 💬 **Personalized Health Recommendations**
-- 📱 **Responsive & Colorful UI** built with Bootstrap
-- 📁 **Data Storage** with SQLite/MySQL backend
-- ☁️ **Deployed Locally or on Cloud (e.g. Render/Heroku)**
-
----
-
-## 🛠️ Tech Stack
-
-| Layer         | Technology               |
-|---------------|---------------------------|
-| Frontend      | HTML5, CSS3, Bootstrap, JS |
-| Backend       | Flask / Django            |
-| Database      | SQLite / MySQL            |
-| ML Model      | Scikit-learn (RandomForest/SVM) |
-| Visualization | Chart.js / Matplotlib     |
-| Deployment    | Render / Localhost        |
-
----
-
-## 📦 Installation
-
-1. **Clone the repo**
-
-```bash
-git clone https://github.com/Dhanushr04/HeartHealth
-cd HeartHealth
-```
-
-2. **Install dependencies**
-
-```bash
-pip install -r requirements.txt
-```
-
-3. **Run the app**
-
-```bash
-python app.py   # For Flask
-# or
-python manage.py runserver   # For Django
-```
-
-4. **Access**
-
-Go to `http://localhost:5000` or `http://127.0.0.1:8000` depending on your backend.
-
----
+| Layer     | Technology                        |
+|-----------|-----------------------------------|
+| Frontend  | HTML, Bootstrap 5, JavaScript, Chart.js |
+| Backend   | Python Flask                      |
+| ML Model  | Logistic Regression (scikit-learn)|
+| Data Prep | pandas, StandardScaler            |
+| Dataset   | `heart.csv` (from UCI / Kaggle)   |
+| Deployment| Localhost / Render / Heroku       |
 
 ## 📁 Folder Structure
 
 ```
-HeartHealth/
-├── static/
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── templates/
-│   ├── base.html
-│   ├── login.html
-│   ├── dashboard.html
-│   └── result.html
-├── models.py
-├── app.py / manage.py
-├── requirements.txt
-├── README.md
-└── heart_model.pkl
+HeartWise_CustomDataset/
+├── app.py                 → Flask app to run the web server
+├── train_model.py         → Script to train and save the ML model
+├── heart.csv              → Dataset used for training (user-provided)
+│
+├── /model/
+│   ├── heart_model.pkl    → Trained logistic regression model
+│   └── scaler.pkl         → Preprocessing scaler
+│
+├── /templates/
+│   └── index.html         → Responsive Bootstrap form
+│
+└── /static/
+    └── style.css (optional)
 ```
 
----
+## 🧪 How It Works
+1. **User Input**: Form collects 13 features like age, sex, cholesterol, etc.
+2. **Preprocessing**: Inputs are scaled using the same StandardScaler from training.
+3. **Prediction**: Logistic regression predicts risk (0 = Low, 1 = High).
+4. **Output**: Displays risk label and donut chart for confidence score.
 
-## 🧪 Sample Inputs
+## 🧠 Features
+✅ Responsive form layout (Bootstrap grid)  
+✅ Real-time prediction via Fetch API (no page reload)  
+✅ Simple and interpretable logistic regression  
+✅ Chart.js donut chart for clear result visualization  
+✅ Easily extendable to other ML models (like XGBoost)  
+✅ Custom CSV training with `train_model.py`  
 
-| Feature             | Example Value |
-|---------------------|----------------|
-| Age                 | 54             |
-| Sex                 | Male           |
-| Chest Pain Type     | 1              |
-| Resting BP          | 130            |
-| Cholesterol         | 246            |
-| Fasting Blood Sugar | 0              |
-| Thalassemia         | 2              |
+## 📊 Input Features Required
 
----
-
-## 🤝 Contributing
-
-Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
-
----
-
-## 📄 License
-
-MIT License © 2025 HeartWise Team
-
----
-
-## ❤️ Credits
-
-Developed with care to keep your heart healthy.  
-ML Model powered by open medical datasets and research.
+| Feature Name | Description |
+|--------------|-------------|
+| age          | Age of the patient |
+| sex          | 1 = male, 0 = female |
+| cp           | Chest pain type (0–3) |
+| trestbps     | Resting blood pressure |
+| chol         | Serum cholesterol (mg/dl) |
+| fbs          | Fasting blood sugar > 120 mg/dl |
+| restecg      | Resting ECG result |
+| thalach      | Max heart rate achieved |
+| exang        | Exercise-induced angina |
+| oldpeak      | ST depression induced by exercise |
+| slope        | Slope of peak exercise ST segment |
+| ca           | Number of major vessels (0–3) |
+| thal         | 3 = normal, 6 = fixed defect, 7 = reversible defect |
